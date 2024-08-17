@@ -52,7 +52,7 @@ class GestureDetection(QtCore.QObject):
         confidence = np.max(predictions)
         predicted_label = np.argmax(predictions)
 
-        if confidence > self.confidence_threshold and predicted_label != 5 or confidence > 0.8 and predicted_label == 1:
+        if confidence > self.confidence_threshold and predicted_label != 5 and predicted_label != 1 or confidence > 0.8 and predicted_label == 1:
             gesture_name = self.gesture_names[predicted_label]
             self.gesture_detected.emit(gesture_name)  # Emit detected gesture signal
             # 重置 frame_buffer 为 -1
